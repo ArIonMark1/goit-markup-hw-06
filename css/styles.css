@@ -738,7 +738,7 @@ img {
 .contract-confirm {
   /*<div> in form*/
   position: relative;
-  border: 1px solid rebeccapurple;
+  /* border: 1px solid rebeccapurple; */
 }
 .is-hidden-checkbox {
   opacity: 0;
@@ -811,7 +811,7 @@ img {
 }
 .checkbox:hover + .label-input span,
 .checkbox:focus + .label-input span {
-  /* border: 2px solid var(--hover-link-color); */
+  border: 2px solid var(--hover-link-color);
   box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.12),
     0px 1px 1px rgba(50, 50, 50, 0.14), 0px 2px 1px rgba(50, 50, 50, 0.2);
 }
