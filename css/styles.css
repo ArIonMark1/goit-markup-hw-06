@@ -650,13 +650,6 @@ img {
   visibility: hidden; /* прибирає фокуси на модальному вікні */
   pointer-events: none; /* прибирає можливість інспектувати модальне вікно */
 }
-.is-hidden-checkbox {
-  opacity: 0;
-  pointer-events: none;
-  clip-path: none;
-  position: absolute;
-  overflow: hidden;
-}
 /*---------------------- Стилі форми модального вікна ----------------------*/
 
 .tittle-form {
@@ -742,10 +735,21 @@ img {
   color: rgba(117, 117, 117, 0.5);
 }
 /* ^^^^^^^^^^^^ confirm contract ^^^^^^^^^^^^ */
-/* .contract-confirm {
-   <div> in form
+.contract-confirm {
+  /*<div> in form*/
+  position: relative;
   border: 1px solid rebeccapurple;
-} */
+}
+.is-hidden-checkbox {
+  opacity: 0;
+  pointer-events: none;
+  clip-path: none;
+  position: absolute;
+  overflow: hidden;
+
+  z-index: -1;
+  transform: translate(150%, 50%);
+}
 .label-input {
   /* <label> complete!!! */
   display: flex;
