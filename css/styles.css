@@ -587,7 +587,7 @@ img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   /* --cubic-animation: 500ms cubic-bezier(0.4, 0, 0.2, 1); */
-  transition: opacity --cubic-animation, visibility --cubic-animation;
+  transition: opacity var(--cubic-animation), visibility var(--cubic-animation);
 }
 .modal-form-window {
   position: absolute;
@@ -625,24 +625,22 @@ img {
   border-radius: 50%;
   background-color: transparent;
   transform: scale(1);
-  transition: background-color 1200ms 280ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 1220ms 280ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 280ms 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1); */
+  transition: fill 400ms 255ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms 255ms cubic-bezier(0.4, 0, 0.2, 1);
   fill: #000;
 }
 .background-window.is-hidden .modal-button {
-  background-color: var(--background-button-color);
-  fill: #fff;
-  transform: scale(1.3);
+  fill: var(--background-button-color);
+  transform: scale(1.2);
 }
 .modal-button:hover {
-  background-color: var(--background-button-color);
-  fill: var(--third-main-color);
+  fill: var(--background-button-color);
   transition-property: background-color;
   transform: scale(1.1);
-
-  transition: background-color 250ms 1ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms 1ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /*----------- OK -----------*/
 .is-hidden {
@@ -653,10 +651,7 @@ img {
   pointer-events: none; /* прибирає можливість інспектувати модальне вікно */
 }
 /*---------------------- Стилі форми модального вікна ----------------------*/
-form {
-  /* border: 1px solid indigo; */
-  /* margin: 20px 0; */
-}
+
 .tittle-form {
   font-weight: 700;
   font-size: 20px;
@@ -665,52 +660,134 @@ form {
   letter-spacing: 0.03em;
   color: #212121;
   margin-bottom: 12px;
-}
-/*---------------------- Сама форма ----------------------*/
-.modal-form .form-group {
-  /* display: flex;
-  flex-direction: column;
-  margin-bottom: 10px; */
-  border: 1px solid red;
-}
-.modal-form .form-group:last-child {
-  /* margin-bottom: 0; */
-  border: 1px solid green;
-}
-.contract-confirm {
-  display: flex;
-  justify-content: center;
-  gap: 9px;
   /* border: 1px solid red; */
 }
+/*---------------------- Сама форма ----------------------*/
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  /* border: 1px solid teal; */
+}
+.input-box {
+  position: relative;
+}
+/* ******************************* */
 .input-label {
-  font-family: "Roboto";
-  font-style: normal;
+  /* border: 1px solid teal; */
   font-weight: 400;
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.01em;
   color: #757575;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .form-input {
   height: 40px;
-  border: 1px solid rgba(33, 33, 33, 0.2);
-  background-color: transparent;
+  width: 100%;
   outline: transparent;
+  border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
+  padding-left: 36px;
+  transition: box-shadow var(--cubic-animation), border var(--cubic-animation);
+}
+.form-input:focus {
+  border: 1px solid var(--hover-link-color);
+  box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.12),
+    0px 1px 1px rgba(50, 50, 50, 0.14), 0px 2px 1px rgba(50, 50, 50, 0.2);
+}
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.input-icon {
+  fill: #2f303a;
+  transition: fill var(--cubic-animation);
+}
+.form-input:focus + .input-icon {
+  fill: var(--hover-link-color);
+}
+/* +++++++++++ Крута механіка динамічної валідації полів +++++++++++ */
+.form-input:not(:focus):not(:placeholder-shown):valid {
+  background-color: rgba(125, 255, 125, 0.432);
+}
+.form-input:not(:focus):not(:placeholder-shown):invalid {
+  background-color: rgba(255, 128, 128, 0.445);
+}
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ******************************* */
+.textarea-container {
+  margin-bottom: 20px;
 }
 .textarea {
   height: 120px;
+  padding: 12px 16px;
+  resize: none;
 }
-.form-input:focus {
-  border: none;
-  outline: 1px solid var(--hover-link-color);
+.textarea::placeholder {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  color: rgba(117, 117, 117, 0.5);
+  /* border: 1px solid blueviolet; */
 }
+/* ^^^^^^^^^^^^ confirm contract ^^^^^^^^^^^^ */
+.contract-confirm {
+  /* <div> in form */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  border: 1px solid rebeccapurple;
+}
+.label-input {
+  /* <label> */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: #757575;
+  border: 1px dashed grey;
+}
+
+.label-icon {
+  /* <span> */
+  width: 18px;
+  height: 18px;
+  /* margin-right: 10px; */
+  border: 1px solid #212121;
+  border-radius: 2px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox:checked + .label-icon {
+  background-color: thistle;
+  outline: none;
+  fill: #fff;
+}
+.contract-link {
+  /* <a> */
+  text-decoration: underline;
+  color: var(--logo-color);
+}
+.checkbox {
+  /* <input> */
+  /* margin-right: 10px;
+  outline: 2px solid goldenrod; */
+}
+.check-icon {
+  /* svg */
+}
+
 .form-button {
-  margin: 0 auto;
-}
-textarea {
-  width: 100%;
-  height: 138px;
 }
