@@ -502,6 +502,7 @@ img {
 .footer-container {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
 }
 .botom-logo {
   color: var(--third-main-color);
@@ -581,7 +582,8 @@ img {
 }
 /* ------------------- Стилі форми підписки на розсилку ------------------- */
 .subscription {
-  border: 1px dashed turquoise;
+  /* border: 1px dashed turquoise; */
+  width: 100%;
   margin-left: 90px;
 }
 .subscription-title {
@@ -590,14 +592,75 @@ img {
   line-height: 16px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: #ffffff;
-
-  margin-bottom: 20px;
+  color: var(--third-main-color);
+}
+/* Block with input and button */
+.subscription-form {
+  margin-top: 20px;
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  gap: 12px;
 }
 .subscription-input {
-  order: 1px solid rgba(255, 255, 255, 0.3);
+  /* input field */
+  border: 2px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
   border-radius: 4px;
+  background: transparent;
+  padding: 0 12px 0 16px;
+  flex-grow: 1;
+  height: 50px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.subscription-button-box {
+  /* button box */
+  position: relative;
+  flex-grow: 1;
+
+  background-color: var(--background-button-color);
+  /* background: #2196f3; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background-color var(--cubic-animation);
+}
+.subscription-button-box:hover {
+  background-color: #188ce8;
+}
+/* .subscribe-button {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-button-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border: 1px solid transparent;
+  border-radius: 4px;
+} */
+.subscribe-label {
+  /* text on button */
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  letter-spacing: 0.06em;
+  color: var(--third-main-color);
+}
+.subscribe-label .subscribe-image {
+  fill: var(--third-main-color);
 }
 /* ------------------- Стилі модального вікна ------------------- */
 .background-window {
@@ -709,12 +772,13 @@ img {
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
   padding-left: 36px;
+  padding-right: 12px;
   transition: box-shadow var(--cubic-animation), border var(--cubic-animation);
 }
 .form-input:focus {
   border: 1px solid var(--hover-link-color);
-  box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.12),
-    0px 1px 1px rgba(50, 50, 50, 0.14), 0px 2px 1px rgba(50, 50, 50, 0.2);
+  /* box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.12),
+    0px 1px 1px rgba(50, 50, 50, 0.14), 0px 2px 1px rgba(50, 50, 50, 0.2); */
 }
 .input-icon {
   position: absolute;
@@ -730,12 +794,12 @@ img {
   fill: var(--hover-link-color);
 }
 /* +++++++++++ Крута механіка динамічної валідації полів +++++++++++ */
-.form-input:not(:focus):not(:placeholder-shown):valid {
+/* .form-input:not(:focus):not(:placeholder-shown):valid {
   background-color: rgba(125, 255, 125, 0.432);
 }
 .form-input:not(:focus):not(:placeholder-shown):invalid {
   background-color: rgba(255, 128, 128, 0.445);
-}
+} */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 /* ******************************* */
@@ -781,10 +845,6 @@ img {
   line-height: 1.7;
   letter-spacing: 0.03em;
   color: #757575;
-  /* border: 1px dashed grey; */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 /* ######################### */
 /* .label-input::before {
@@ -800,16 +860,6 @@ img {
   background-color: red;
 } */
 
-.is-hidden-c {
-  /* прибирає модальне вікно візуально та функціонально, як display: none */
-  /* display: none; не стилізується та не анімується, не використовуємо! */
-  opacity: 0; /* робить елемент невидимим */
-  pointer-events: none; /* прибирає можливість інспектувати модальне вікно */
-
-  clip-path: none;
-  position: absolute;
-  overflow: hidden;
-}
 /*----
 
 /* ######################### */
@@ -825,19 +875,20 @@ img {
   justify-content: center;
   align-items: center;
   fill: transparent;
-  transition: border var(--cubic-animation), fill var(--cubic-animation);
+  transition: border var(--cubic-animation), fill var(--cubic-animation),
+    background-color var(--cubic-animation);
 }
 .checkbox:checked + .label-input span {
-  border: none;
+  border: 2px solid transparent;
   fill: var(--third-main-color);
   background-color: var(--background-button-color);
 }
-.checkbox:hover + .label-input span,
+/* .checkbox:hover + .label-input span,
 .checkbox:focus + .label-input span {
   border: 2px solid var(--hover-link-color);
   box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.12),
     0px 1px 1px rgba(50, 50, 50, 0.14), 0px 2px 1px rgba(50, 50, 50, 0.2);
-}
+} */
 
 .contract-link {
   /* <a> */
@@ -870,4 +921,8 @@ img {
   font-size: 16px;
   line-height: 1.88;
   letter-spacing: 0.06em;
+  transition: background-color var(--cubic-animation);
+}
+.form-button:hover {
+  background-color: #188ce8;
 }
